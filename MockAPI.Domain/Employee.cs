@@ -9,7 +9,7 @@ namespace MockAPI.Domain
     public class Employee
     {
         public int Id { get; set; }
-        public int BusinessEntityId { get; set; }
+        public BusinessEntity BusinessEntity { get; set; }
         public int NationalIdNumber { get; set; }
         public string LoginId { get; set; }
         public string OrganizationNode { get; set; }
