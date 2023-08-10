@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace MockAPI.Domain
 {
-    internal class PayHistory
+    public class PayHistory
     {
+        public int Id { get; set; }
+        public int BusinessEntityId { get; set; }
+        public DateTime RateChangeDay { get; set; }
+        public decimal Rate { get; set; }
+        public int PayFrequency { get; set; }
+        public DateTime ModifiedDate { get; set; }
     }
 }

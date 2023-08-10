@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace MockAPI.Domain
 {
-    internal class JobCandidate
+    public class JobCandidate
     {
+        public int Id { get; set; }
+        public int JobCandidateId { get; set; }
+        public int BusinessEntityId { get; set; }
+        public XmlDocument Resume { get; set; }
+        public DateTime ModifiedDate { get; set; }
     }
 }

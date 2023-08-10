@@ -9,6 +9,7 @@ namespace MockAPI.Domain
 {
     public class Person
     {
+        public int Id { get; set; }
         public int BusinessEntityId { get; set; }
         public string PersonType { get; set; }
         public int NameStyle { get; set; }
