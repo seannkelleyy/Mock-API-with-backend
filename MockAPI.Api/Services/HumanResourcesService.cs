@@ -97,6 +97,9 @@ namespace MockAPI.Api.Services
             return jobCandidateResume;
         }
 
+        /*
+         * This method returns a list of resumes because there could be multiple candidates with the same first and last name, which if you provide an id this isn't an issue becuase they are unique.
+         */
         public List<XmlDocument> GetJobCandidateResumeByName(string Lastname, string Firstname)
         {
             var jobCandidateResume = new List<XmlDocument>();

@@ -13,7 +13,7 @@ namespace MockAPI.Api.Services
             db = dbContext;
         }
 
-        public Person Get(int BusinessEntityId)
+        public Person GetPerson(int BusinessEntityId)
         {
             var person = new Person();
 
