@@ -20,7 +20,7 @@ namespace MockAPI.Domain
         public string suffix { get; set; }
         public int EmailPromotion { get; set; }
         public XmlDocument AdditonalContactInfo { get; set; }
-        public XmlDocument Demogaphics { get; set; }
+        public XmlDocument Demographics { get; set; }
         public string rowguid { get; set; }
         public DateTime ModifiedDate { get; set; }
 
