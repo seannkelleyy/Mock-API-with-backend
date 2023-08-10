@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MockAPI.Api.RequestResponseObjects;
 using MockAPI.Api.Services;
 using MockAPI.Data;
-using MockAPI.Domain;
-using SnackTrack.Data;
 
 namespace MockAPI.Api.Controllers
 {

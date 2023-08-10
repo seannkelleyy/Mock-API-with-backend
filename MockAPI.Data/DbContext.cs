@@ -2,7 +2,7 @@
 using MockAPI.Data;
 using MockAPI.Domain;
 
-namespace SnackTrack.Data
+namespace MockAPI.Data
 {
     public class MockAPIContext : DbContext
     {

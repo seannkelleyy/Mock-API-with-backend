@@ -1,5 +1,5 @@
 ﻿using MockAPI.Domain;
-using SnackTrack.Data;
+using MockAPI.Data;
 using System.Xml;
 
 namespace MockAPI.Api.Services
@@ -25,7 +25,7 @@ namespace MockAPI.Api.Services
             return employee;
         }
 
-        public List<DepartmentHistory> GetDepartmentHistory(int BusinessEntityId)
+        public List<DepartmentHistory> GetDepartmentHistories(int BusinessEntityId)
         {
             var departmentHistory = new List<DepartmentHistory>();
 

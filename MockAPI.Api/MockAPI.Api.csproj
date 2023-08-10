@@ -7,8 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MockAPI.Data\MockAPI.Data.csproj" />
     <ProjectReference Include="..\MockAPI.Domain\MockAPI.Domain.csproj" />
+    <ProjectReference Include="..\MockAPI.Sql\MockAPI.Sql.sqlproj" />
   </ItemGroup>
 
 </Project>
