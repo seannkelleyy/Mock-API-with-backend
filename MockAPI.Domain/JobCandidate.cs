@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.Xml;
 
 namespace MockAPI.Domain
 {
@@ -11,7 +6,7 @@ namespace MockAPI.Domain
     {
         public int Id { get; set; }
         public int JobCandidateId { get; set; }
-        public int BusinessEntityId { get; set; }
+        public BusinessEntity BusinessEntity { get; set; }
         public XmlDocument Resume { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
