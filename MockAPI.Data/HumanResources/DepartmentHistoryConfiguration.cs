@@ -1,17 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MockAPI.Domain;
+
 namespace MockAPI.Data
 {
-    internal class DepartmentHistory : IEntityTypeConfiguration<DepartmentHistory>
+    internal class DepartmentHistoryConfiguration : IEntityTypeConfiguration<DepartmentHistory>
     {
         public void Configure(EntityTypeBuilder<DepartmentHistory> modelBuilder)
         {
-            modelBuilder.ToTable("DeparmentHistories");
+            modelBuilder.ToTable("DeparmentHistory");
             modelBuilder
-                .HasOne(departmentHistory => departmentHistory.BusinessEntityID)
-                .WithMany(snack => snack.Purchases)
-                .HasForeignKey("SnackId");
+                .HasOne(departmentHistory => departmentHistory.BusinessEntity)
+                .WithMany(businessEntity => businessEntity.DepartmentHistories)
+                .HasForeignKey("BusinessEntityId");
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MockAPI.Domain
+﻿namespace MockAPI.Domain
 {
     public class BusinessEntity
     {
@@ -12,5 +6,11 @@ namespace MockAPI.Domain
         public int BusinessEntityId { get; set; }
         public string RowGuid { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public Employee Employee { get; set; }
+        public JobCandidate JobCandidate { get; set; }
+        public Person Person { get; set; }
+        public List<DepartmentHistory> DepartmentHistories { get; set; }
+        public List<PayHistory> PayHistories { get; set; }
+
     }
 }

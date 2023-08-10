@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MockAPI.Data;
 using MockAPI.Domain;
 
 namespace SnackTrack.Data
@@ -19,7 +20,14 @@ namespace SnackTrack.Data
         {
             modelBuilder.HasDefaultSchema("dbo");
             modelBuilder.Entity<BusinessEntity>().ToTable("BusinessEntities");
-            //modelBuilder.ApplyConfiguration(new SnackConfiguration());
+            modelBuilder.ApplyConfiguration(new DepartmentHistoryConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+            modelBuilder.ApplyConfiguration(new JobCandidateConfiguration());
+            modelBuilder.ApplyConfiguration(new PayHistoryConfiguration());
+            modelBuilder.ApplyConfiguration(new PersonConfiguration());
+
+
+
         }
     }
 }

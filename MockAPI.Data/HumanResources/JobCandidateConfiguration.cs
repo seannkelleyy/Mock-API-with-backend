@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MockAPI.Domain;
 
-namespace MockAPI.Data.HumanResources
+namespace MockAPI.Data
 {
-    internal class JobCandidateConfiguration
+    internal class JobCandidateConfiguration : IEntityTypeConfiguration<JobCandidate>
     {
+        public void Configure(EntityTypeBuilder<JobCandidate> modelBuilder)
+        {
+            modelBuilder.ToTable("JobCandidate");
+            modelBuilder
+                .HasOne(jobCandidate => jobCandidate.BusinessEntity)
+                .WithOne(businessEntity => businessEntity.JobCandidate)
+                .HasForeignKey("BusinessEntityId");
+        }
     }
 }
