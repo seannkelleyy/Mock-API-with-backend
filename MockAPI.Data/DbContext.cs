@@ -5,6 +5,7 @@ namespace SnackTrack.Data
 {
     public class MockAPIContext : DbContext
     {
+        public DbSet<BusinessEntity> BusinessEntities { get; set; }
         public DbSet<DepartmentHistory> DepartmentHistories { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<JobCandidate> JobCandidates { get; set; }
@@ -17,8 +18,7 @@ namespace SnackTrack.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("dbo");
-            modelBuilder.Entity<DepartmentHistory>().ToTable("DepartmentHistories");
-            modelBuilder.Entity<JobCandidate>().ToTable("JobCandidates");
+            modelBuilder.Entity<BusinessEntity>().ToTable("BusinessEntities");
             //modelBuilder.ApplyConfiguration(new SnackConfiguration());
         }
     }
