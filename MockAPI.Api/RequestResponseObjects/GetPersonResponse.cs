@@ -1,10 +1,10 @@
-﻿using System.Xml;
+﻿using MockAPI.Domain;
+using System.Xml;
 
-namespace MockAPI.Domain
+namespace MockAPI.Api.RequestResponseObjects
 {
-    public class Person
+    public class GetPersonResponse
     {
-        public int Id { get; set; }
         public BusinessEntity BusinessEntity { get; set; }
         public string PersonType { get; set; }
         public int NameStyle { get; set; }
