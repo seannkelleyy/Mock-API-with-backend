@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MockAPI.Data\MockAPI.Data.csproj" />
+    <ProjectReference Include="..\MockAPI.Domain\MockAPI.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,8 +1,9 @@
-﻿namespace MockAPI.Domain
+﻿using MockAPI.Domain;
+
+namespace MockAPI.Api.RequestResponseObjects
 {
-    public class Employee
+    public class GetEmployeeResponse
     {
-        public int Id { get; set; }
         public BusinessEntity BusinessEntity { get; set; }
         public int NationalIdNumber { get; set; }
         public string LoginId { get; set; }
@@ -21,4 +22,3 @@
         public DateOnly ModifiedDate { get; set; }
     }
 }
-    
