@@ -14,7 +14,7 @@ namespace MockAPI.Api.Controllers
             humanResources = new HumanResourcesService(dbContext);
         }
 
-        [HttpGet]
+        [HttpGet("Employee")]
         public IActionResult GetEmployee(int BusinessEntityId)
         {
             try
@@ -27,7 +27,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("DepartmentHistories")]
         public IActionResult GetDepartmentHistories(int BusinessEntityId)
         {
             try
@@ -40,8 +40,8 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult GetPayHistories(int BusinessEntityId)
+        [HttpGet("PayHistoriesForEmployee")]
+        public IActionResult GetPayHistoriesForEmployee(int BusinessEntityId)
         {
             try
             {
@@ -53,8 +53,8 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult GetPayHistories(decimal LowerBound)
+        [HttpGet("PayHistoriesWithLowerBound")]
+        public IActionResult GetPayHistoriesByLowerBound(decimal LowerBound)
         {
             try
             {
@@ -66,8 +66,8 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult GetPayHistories(decimal LowerBound, decimal UpperBound)
+        [HttpGet("PayHistoriesWithLowerAndUpperBound")]
+        public IActionResult GetPayHistoriesByLowerAndUpperBound(decimal LowerBound, decimal UpperBound)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("GetJobCandidateResumeByJobCandidateId")]
         public IActionResult GetJobCandidateResumeByJobCandidateId(int JobCandidateId)
         {
             try
@@ -92,7 +92,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("JobCandidateResumeByBusinessEntityId")]
         public IActionResult GetJobCandidateResumeByBusinessEntityId(int BusinessEntityId)
         {
             try
@@ -105,7 +105,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("JobCandidateResumeByName")]
         public IActionResult GetJobCandidateResumeByName(string Lastname, string Firstname)
         {
             try

@@ -14,7 +14,7 @@ namespace MockAPI.Api.Controllers
             people = new PeopleService(dbContext);
         }
 
-        [HttpGet]
+        [HttpGet("Person")]
         public IActionResult GetPerson(int BusinessEntityId)
         {
             try
