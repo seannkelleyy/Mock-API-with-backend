@@ -10,7 +10,7 @@ namespace MockAPI.Api.RequestResponseObjects
         public int Id { get; set; }
         public int JobCandidateId { get; set; }
         public BusinessEntity BusinessEntity { get; set; }
-        public XDocument Resume { get; set; }
+        public string Resume { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
 }

@@ -52,7 +52,7 @@ namespace MockAPI.Api.Services
                 .ToList();
         }
 
-        public XDocument GetJobCandidateResumeByJobCandidateId(int JobCandidateId)
+        public string GetJobCandidateResumeByJobCandidateId(int JobCandidateId)
         {
             return db.JobCandidates
             .Where(jobCandidate => jobCandidate.JobCandidateId == JobCandidateId)
@@ -61,7 +61,7 @@ namespace MockAPI.Api.Services
 
         }
 
-        public XDocument GetJobCandidateResumeByBusinessEntityId(int BusinessEntityId)
+        public string GetJobCandidateResumeByBusinessEntityId(int BusinessEntityId)
         {
             return db.JobCandidates
                 .Where(jobCandidate => jobCandidate.BusinessEntity.BusinessEntityId == BusinessEntityId)
@@ -69,7 +69,7 @@ namespace MockAPI.Api.Services
                 .First();
         }
 
-        public List<XDocument> GetJobCandidateResumeByName(string Lastname, string Firstname)
+        public List<string> GetJobCandidateResumeByName(string Lastname, string Firstname)
         {
             return db.People
                 .Include(people => people.BusinessEntity)

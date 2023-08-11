@@ -8,7 +8,7 @@ namespace MockAPI.Data
     {
         public void Configure(EntityTypeBuilder<PayHistory> modelBuilder)
         {
-            modelBuilder.ToTable("PayHistory");
+            modelBuilder.ToTable("HumanResources.PayHistory");
             modelBuilder
                 .HasOne(departmentHistory => departmentHistory.BusinessEntity)
                 .WithMany(businessEntity => businessEntity.PayHistories)

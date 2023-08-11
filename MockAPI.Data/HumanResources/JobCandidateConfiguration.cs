@@ -8,11 +8,11 @@ namespace MockAPI.Data
     {
         public void Configure(EntityTypeBuilder<JobCandidate> modelBuilder)
         {
-            modelBuilder.ToTable("JobCandidate");
+            modelBuilder.ToTable("HumanResources.JobCandidate");
             modelBuilder
                 .HasOne(jobCandidate => jobCandidate.BusinessEntity)
                 .WithOne(businessEntity => businessEntity.JobCandidate)
-                .HasForeignKey<JobCandidate>("BusinessEntityId");
+                .HasForeignKey<JobCandidate>("BusinessEntityID");
         }
     }
 }

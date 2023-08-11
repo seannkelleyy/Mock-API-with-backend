@@ -16,8 +16,8 @@ namespace MockAPI.Api.RequestResponseObjects
         public string LastName { get; set; }
         public string Suffix { get; set; }
         public int EmailPromotion { get; set; }
-        public XDocument AdditonalContactInfo { get; set; }
-        public XDocument Demographics { get; set; }
+        public string AdditonalContactInfo { get; set; }
+        public string Demographics { get; set; }
         public string RowGuid { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
