@@ -3,6 +3,7 @@ using MockAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlTypes;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace MockAPI.Api.Services
 {
@@ -51,7 +52,7 @@ namespace MockAPI.Api.Services
                 .ToList();
         }
 
-        public XmlDocument GetJobCandidateResumeByJobCandidateId(int JobCandidateId)
+        public XDocument GetJobCandidateResumeByJobCandidateId(int JobCandidateId)
         {
             return db.JobCandidates
             .Where(jobCandidate => jobCandidate.JobCandidateId == JobCandidateId)
@@ -60,7 +61,7 @@ namespace MockAPI.Api.Services
 
         }
 
-        public XmlDocument GetJobCandidateResumeByBusinessEntityId(int BusinessEntityId)
+        public XDocument GetJobCandidateResumeByBusinessEntityId(int BusinessEntityId)
         {
             return db.JobCandidates
                 .Where(jobCandidate => jobCandidate.BusinessEntity.BusinessEntityId == BusinessEntityId)
@@ -68,7 +69,7 @@ namespace MockAPI.Api.Services
                 .First();
         }
 
-        public List<XmlDocument> GetJobCandidateResumeByName(string Lastname, string Firstname)
+        public List<XDocument> GetJobCandidateResumeByName(string Lastname, string Firstname)
         {
             return db.People
                 .Include(people => people.BusinessEntity)

@@ -14,7 +14,7 @@ namespace MockAPI.Api.Controllers
             humanResources = new HumanResourcesService(dbContext);
         }
 
-        [HttpGet("Employee")]
+        [HttpGet("Employee/{BusinessEntityId:int}")]
         public IActionResult GetEmployee(int BusinessEntityId)
         {
             try
@@ -27,7 +27,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("DepartmentHistories")]
+        [HttpGet("DepartmentHistory/{BusinessEntityId:int}")]
         public IActionResult GetDepartmentHistories(int BusinessEntityId)
         {
             try
@@ -40,7 +40,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("PayHistoriesForEmployee")]
+        [HttpGet("PayHistory/{BusinessEntityId:int}")]
         public IActionResult GetPayHistoriesForEmployee(int BusinessEntityId)
         {
             try
@@ -53,7 +53,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("PayHistoriesWithLowerBound")]
+        [HttpGet("PayHistory/{LowerBound:decimal}")]
         public IActionResult GetPayHistoriesByLowerBound(decimal LowerBound)
         {
             try
@@ -66,8 +66,8 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("PayHistoriesWithLowerAndUpperBound")]
-        public IActionResult GetPayHistoriesByLowerAndUpperBound(decimal LowerBound, decimal UpperBound)
+        [HttpGet("PayHistory/")]
+        public IActionResult GetPayHistoriesByLowerAndUpperBound([FromQuery]decimal LowerBound, decimal UpperBound)
         {
             try
             {
@@ -79,20 +79,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("GetJobCandidateResumeByJobCandidateId")]
-        public IActionResult GetJobCandidateResumeByJobCandidateId(int JobCandidateId)
-        {
-            try
-            {
-                return Ok(humanResources.GetJobCandidateResumeByJobCandidateId(JobCandidateId));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-
-        [HttpGet("JobCandidateResumeByBusinessEntityId")]
+        [HttpGet("JobCandidateResume/{BusinessEntityId:int}")]
         public IActionResult GetJobCandidateResumeByBusinessEntityId(int BusinessEntityId)
         {
             try
@@ -105,8 +92,8 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("JobCandidateResumeByName")]
-        public IActionResult GetJobCandidateResumeByName(string Lastname, string Firstname)
+        [HttpGet("JobCandidateResume/")]
+        public IActionResult GetJobCandidateResumeByName([FromQuery]string Lastname, string Firstname)
         {
             try
             {

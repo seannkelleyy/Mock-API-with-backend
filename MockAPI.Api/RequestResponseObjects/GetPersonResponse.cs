@@ -1,6 +1,7 @@
 ﻿using MockAPI.Domain;
 using System.Data.SqlTypes;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace MockAPI.Api.RequestResponseObjects
 {
@@ -15,8 +16,8 @@ namespace MockAPI.Api.RequestResponseObjects
         public string LastName { get; set; }
         public string Suffix { get; set; }
         public int EmailPromotion { get; set; }
-        public XmlDocument AdditonalContactInfo { get; set; }
-        public XmlDocument Demographics { get; set; }
+        public XDocument AdditonalContactInfo { get; set; }
+        public XDocument Demographics { get; set; }
         public string RowGuid { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
