@@ -15,14 +15,10 @@ namespace MockAPI.Api.Services
 
         public Person GetPerson(int BusinessEntityId)
         {
-            var person = new Person();
-
-            if (BusinessEntityId != null)
-            {
-                person = db.People.Find(BusinessEntityId);
-            }
-
-            return person;
+                return db.People
+                .Where(person => person.BusinessEntity.BusinessEntityId == BusinessEntityId)
+                .Select(person => person)
+                .First();
         }
     }
 }

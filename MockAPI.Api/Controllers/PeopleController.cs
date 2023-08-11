@@ -14,7 +14,7 @@ namespace MockAPI.Api.Controllers
             people = new PeopleService(dbContext);
         }
 
-        [HttpGet("Person")]
+        [HttpGet("{BusinessEntityId:int}")]
         public IActionResult GetPerson(int BusinessEntityId)
         {
             try
@@ -23,7 +23,7 @@ namespace MockAPI.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500);
+                return StatusCode(500, ex.Message);
             }
         }
     }

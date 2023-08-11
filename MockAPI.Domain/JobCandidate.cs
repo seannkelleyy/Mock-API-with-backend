@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Data.SqlTypes;
+using System.Xml;
 
 namespace MockAPI.Domain
 {

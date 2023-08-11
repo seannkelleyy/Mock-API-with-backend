@@ -12,7 +12,7 @@ namespace MockAPI.Data
             modelBuilder
                 .HasOne(person => person.BusinessEntity)
                 .WithOne(businessEntity => businessEntity.Person)
-                .HasForeignKey("BusinessEntityId");
+                .HasForeignKey<Person>("BusinessEntityID");
         }
     }
 }

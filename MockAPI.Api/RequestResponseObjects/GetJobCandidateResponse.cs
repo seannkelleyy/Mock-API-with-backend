@@ -1,4 +1,5 @@
 ﻿using MockAPI.Domain;
+using System.Data.SqlTypes;
 using System.Xml;
 
 namespace MockAPI.Api.RequestResponseObjects
