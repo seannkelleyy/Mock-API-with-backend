@@ -25,7 +25,7 @@ namespace MockAPI.Api.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-        }
+           }
 
         [HttpGet("DepartmentHistory/{BusinessEntityId:int}")]
         public IActionResult GetDepartmentHistories(int BusinessEntityId)

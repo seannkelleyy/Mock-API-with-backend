@@ -18,16 +18,12 @@ namespace MockAPI.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("dbo");
-            modelBuilder.Entity<BusinessEntity>().ToTable("Person.BusinessEntity");
+            modelBuilder.Entity<BusinessEntity>().ToTable("BusinessEntity", "Person");
             modelBuilder.ApplyConfiguration(new DepartmentHistoryConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new JobCandidateConfiguration());
             modelBuilder.ApplyConfiguration(new PayHistoryConfiguration());
             modelBuilder.ApplyConfiguration(new PersonConfiguration());
-
-
-
         }
     }
 }

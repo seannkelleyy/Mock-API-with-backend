@@ -1,10 +1,12 @@
-﻿namespace MockAPI.Domain
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MockAPI.Domain
 {
     public class BusinessEntity
     {
-        public int Id { get; set; }
+        [Key]
         public int BusinessEntityId { get; set; }
-        public string RowGuid { get; set; }
+        public Guid RowGuid { get; set; }
         public DateTime ModifiedDate { get; set; }
         public Employee Employee { get; set; }
         public JobCandidate JobCandidate { get; set; }

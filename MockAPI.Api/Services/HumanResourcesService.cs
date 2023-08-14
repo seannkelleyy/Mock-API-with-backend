@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Data.SqlTypes;
 using System.Xml;
 using System.Xml.Linq;
+using MockAPI.Api.RequestResponseObjects;
 
 namespace MockAPI.Api.Services
 {
@@ -16,12 +17,27 @@ namespace MockAPI.Api.Services
             db = dbContext;
         }
 
-        public Employee GetEmployee(int BusinessEntityId)
+        public GetEmployeeResponse GetEmployee(int BusinessEntityId)
         {
                 return db.Employees
-                .Where(employee => employee.BusinessEntity.BusinessEntityId == BusinessEntityId)
-                .Select(employee => employee)
-                .First() ;
+                .Where(employee => employee.BusinessEntityId == BusinessEntityId)
+                .Select(employee => new GetEmployeeResponse
+                {
+                    BusinessEntity = db.BusinessEntities.Where(businessEntity => employee.BusinessEntityId == BusinessEntityId).Select(businessEntity => businessEntity).First(),
+                    NationalIdNumber = employee.NationalIdNumber,
+                    LoginId = employee.LoginId,
+                    OrganizationLevel = employee.OrganizationLevel,
+                    JobTitle = employee.JobTitle,
+                    BirthDate = employee.BirthDate,
+                    MaritalStatus = employee.MaritalStatus,
+                    Gender = employee.Gender,
+                    HireDate = employee.HireDate,
+                    SalariedFlag = employee.SalariedFlag,
+                    VacationHours = employee.VacationHours,
+                    SickLeaveHours = employee.SickLeaveHours,
+                    CurrentFlag = employee.CurrentFlag,
+                    ModifiedDate = employee.ModifiedDate,
+                }).First();
         }
 
         public List<DepartmentHistory> GetDepartmentHistories(int BusinessEntityId)
