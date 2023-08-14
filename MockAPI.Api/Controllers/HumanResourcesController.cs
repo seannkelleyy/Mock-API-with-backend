@@ -40,7 +40,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("PayHistory/{BusinessEntityId:int}")]
+        [HttpGet("PayHistory/BusinessEntity/{BusinessEntityId:int}")]
         public IActionResult GetPayHistoriesForEmployee(int BusinessEntityId)
         {
             try
@@ -53,7 +53,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("PayHistory/{LowerBound:decimal}")]
+        [HttpGet("PayHistory/LowerBound/{LowerBound:decimal}")]
         public IActionResult GetPayHistoriesByLowerBound(decimal LowerBound)
         {
             try
@@ -66,8 +66,8 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("PayHistory/")]
-        public IActionResult GetPayHistoriesByLowerAndUpperBound([FromQuery]decimal LowerBound, decimal UpperBound)
+        [HttpGet("PayHistory/LowerBoundUpperBound/")]
+        public IActionResult GetPayHistoriesByLowerAndUpperBound([FromQuery] decimal LowerBound, decimal UpperBound)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("JobCandidateResume/{BusinessEntityId:int}")]
+        [HttpGet("JobCandidateResume/BusinessEntityId/{BusinessEntityId:int}")]
         public IActionResult GetJobCandidateResumeByBusinessEntityId(int BusinessEntityId)
         {
             try
@@ -92,7 +92,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("JobCandidateResume/")]
+        [HttpGet("JobCandidateResume/Name/")]
         public IActionResult GetJobCandidateResumeByName([FromQuery]string Lastname, string Firstname)
         {
             try

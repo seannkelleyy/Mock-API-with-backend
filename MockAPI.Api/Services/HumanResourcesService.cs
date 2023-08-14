@@ -23,7 +23,7 @@ namespace MockAPI.Api.Services
                 .Where(employee => employee.BusinessEntityId == BusinessEntityId)
                 .Select(employee => new GetEmployeeResponse
                 {
-                    BusinessEntity = db.BusinessEntities.Where(businessEntity => employee.BusinessEntityId == BusinessEntityId).Select(businessEntity => businessEntity).First(),
+                    BusinessEntity = db.BusinessEntities.Where(businessEntity => businessEntity.BusinessEntityId == BusinessEntityId).Select(businessEntity => businessEntity).First(),
                     NationalIdNumber = employee.NationalIdNumber,
                     LoginId = employee.LoginId,
                     OrganizationLevel = employee.OrganizationLevel,
@@ -40,31 +40,63 @@ namespace MockAPI.Api.Services
                 }).First();
         }
 
-        public List<DepartmentHistory> GetDepartmentHistories(int BusinessEntityId)
+        public List<GetDepartmentHistoryResponse> GetDepartmentHistories(int BusinessEntityId)
         {
                 return db.DepartmentHistories
-                .Where(departmentHistory => departmentHistory.BusinessEntity.BusinessEntityId == BusinessEntityId)
+                .Where(departmentHistory => departmentHistory.BusinessEntityId == BusinessEntityId)
+                .Select(departmentHistory => new GetDepartmentHistoryResponse
+                {
+                    BusinessEntity = db.BusinessEntities.Where(businessEntity => businessEntity.BusinessEntityId == BusinessEntityId).Select(businessEntity => businessEntity).First(),
+                    DepartmentId = departmentHistory.DepartmentId,
+                    ShiftId = departmentHistory.ShiftId,
+                    StartDate = departmentHistory.StartDate,
+                    EndDate = departmentHistory.EndDate,
+                    ModifiedDate = departmentHistory.ModifiedDate,
+                })
                 .ToList();
         }
 
-        public List<PayHistory> GetPayHistories(int BusinessEntityId)
+        public List<GetPayHistoryResponse> GetPayHistories(int BusinessEntityId)
         {
                 return db.PayHistories
                 .Where(payHistory => payHistory.BusinessEntity.BusinessEntityId == BusinessEntityId)
+                .Select(payHistory => new GetPayHistoryResponse
+                {
+                    BusinessEntity = db.BusinessEntities.Where(businessEntity => businessEntity.BusinessEntityId == BusinessEntityId).Select(businessEntity => businessEntity).First(),
+                    RateChangeDate = payHistory.RateChangeDate,
+                    Rate = payHistory.Rate,
+                    PayFrequency = payHistory.PayFrequency,
+                    ModifiedDate = payHistory.ModifiedDate,
+                })
                 .ToList();
         }
 
-        public List<PayHistory> GetPayHistories(decimal Lowerbound)
+        public List<GetPayHistoryResponse> GetPayHistories(decimal Lowerbound)
         {
                 return db.PayHistories
                 .Where(payHistory => payHistory.Rate > Lowerbound)
+                .Select(payHistory => new GetPayHistoryResponse
+                {
+                    BusinessEntity = payHistory.BusinessEntity,
+                    RateChangeDate = payHistory.RateChangeDate,
+                    Rate = payHistory.Rate,
+                    PayFrequency = payHistory.PayFrequency,
+                    ModifiedDate = payHistory.ModifiedDate,
+                })
                 .ToList();
         }
 
-        public List<PayHistory> GetPayHistories(decimal Lowerbound, decimal UpperBound)
+        public List<GetPayHistoryResponse> GetPayHistories(decimal Lowerbound, decimal UpperBound)
         {
                 return db.PayHistories
                 .Where(payHistory => payHistory.Rate > Lowerbound && payHistory.Rate < UpperBound)
+                .Select(payHistory => new GetPayHistoryResponse
+                {
+                    RateChangeDate = payHistory.RateChangeDate,
+                    Rate = payHistory.Rate,
+                    PayFrequency = payHistory.PayFrequency,
+                    ModifiedDate = payHistory.ModifiedDate,
+                })
                 .ToList();
         }
 
@@ -90,7 +122,6 @@ namespace MockAPI.Api.Services
             return db.People
                 .Include(people => people.BusinessEntity)
                 .ThenInclude(businessEntity => businessEntity.JobCandidate)
-                .ThenInclude(jobCandidate => jobCandidate.Resume)
                 .Where(person => person.FirstName == Firstname && person.LastName == Lastname)
                 .Select(person => person.BusinessEntity.JobCandidate.Resume)
                 .ToList();
