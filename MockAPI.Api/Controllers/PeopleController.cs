@@ -14,12 +14,25 @@ namespace MockAPI.Api.Controllers
             people = new PeopleService(dbContext);
         }
 
-        [HttpGet("Person/")]
+        [HttpGet("Person/{BusinessEntityId:int}")]
         public IActionResult GetPerson(int BusinessEntityId)
         {
             try
             {
                 return Ok(people.GetPerson(BusinessEntityId));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("Person/Name/")]
+        public IActionResult GetPersonByName([FromQuery] string FirstName, string LastName) 
+        {
+              try
+            {
+                return Ok(people.GetPersonByName(FirstName, LastName));
             }
             catch (Exception ex)
             {

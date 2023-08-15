@@ -5,6 +5,7 @@ using System.Data.SqlTypes;
 using System.Xml;
 using System.Xml.Linq;
 using MockAPI.Api.RequestResponseObjects;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MockAPI.Api.Services
 {
@@ -19,26 +20,54 @@ namespace MockAPI.Api.Services
 
         public GetEmployeeResponse GetEmployee(int BusinessEntityId)
         {
-                return db.Employees
-                .Where(employee => employee.BusinessEntityId == BusinessEntityId)
-                .Select(employee => new GetEmployeeResponse
-                {
-                    BusinessEntity = db.BusinessEntities.Where(businessEntity => businessEntity.BusinessEntityId == BusinessEntityId).Select(businessEntity => businessEntity).First(),
-                    NationalIdNumber = employee.NationalIdNumber,
-                    LoginId = employee.LoginId,
-                    OrganizationLevel = employee.OrganizationLevel,
-                    JobTitle = employee.JobTitle,
-                    BirthDate = employee.BirthDate,
-                    MaritalStatus = employee.MaritalStatus,
-                    Gender = employee.Gender,
-                    HireDate = employee.HireDate,
-                    SalariedFlag = employee.SalariedFlag,
-                    VacationHours = employee.VacationHours,
-                    SickLeaveHours = employee.SickLeaveHours,
-                    CurrentFlag = employee.CurrentFlag,
-                    ModifiedDate = employee.ModifiedDate,
-                }).First();
+            return db.Employees
+            .Where(employee => employee.BusinessEntityId == BusinessEntityId)
+            .Select(employee => new GetEmployeeResponse
+            {
+                BusinessEntity = db.BusinessEntities.Where(businessEntity => businessEntity.BusinessEntityId == BusinessEntityId).Select(businessEntity => businessEntity).First(),
+                NationalIdNumber = employee.NationalIdNumber,
+                LoginId = employee.LoginId,
+                OrganizationLevel = employee.OrganizationLevel,
+                JobTitle = employee.JobTitle,
+                BirthDate = employee.BirthDate,
+                MaritalStatus = employee.MaritalStatus,
+                Gender = employee.Gender,
+                HireDate = employee.HireDate,
+                SalariedFlag = employee.SalariedFlag,
+                VacationHours = employee.VacationHours,
+                SickLeaveHours = employee.SickLeaveHours,
+                CurrentFlag = employee.CurrentFlag,
+                ModifiedDate = employee.ModifiedDate,
+            }).First();
         }
+
+        public EmployeeResponse CreateEmployee(EmployeeResponse Employee)
+        {
+            var employee = new Employee
+            {
+                BusinessEntityId = Employee.BusinessEntityId,
+                NationalIdNumber = Employee.NationalIdNumber,
+                LoginId = Employee.LoginId,
+                JobTitle = Employee.JobTitle,
+                BirthDate = Employee.BirthDate,
+                MaritalStatus = Employee.MaritalStatus,
+                Gender = Employee.Gender,
+                HireDate = Employee.HireDate,
+                VacationHours = 14,
+                SickLeaveHours = 15,
+                CurrentFlag = true,
+                ModifiedDate = DateTime.Now,
+            };
+            db.Employees.Add(employee);
+            db.SaveChanges();
+            return (Employee);
+        }
+
+/*        public GetEmployeeResponse GetEmployeeByName(string Name)
+        {
+            return db.Employees
+                .Where(employee => employee.)
+        }*/
 
         public List<GetDepartmentHistoryResponse> GetDepartmentHistories(int BusinessEntityId)
         {
@@ -71,7 +100,7 @@ namespace MockAPI.Api.Services
                 .ToList();
         }
 
-        public List<GetPayHistoryResponse> GetPayHistories(decimal Lowerbound)
+        public List<GetPayHistoryResponse> GetPayHistoriesMin(decimal Lowerbound)
         {
                 return db.PayHistories
                 .Where(payHistory => payHistory.Rate > Lowerbound)
@@ -86,7 +115,7 @@ namespace MockAPI.Api.Services
                 .ToList();
         }
 
-        public List<GetPayHistoryResponse> GetPayHistories(decimal Lowerbound, decimal UpperBound)
+        public List<GetPayHistoryResponse> GetPayHistoriesRange(decimal Lowerbound, decimal UpperBound)
         {
                 return db.PayHistories
                 .Where(payHistory => payHistory.Rate > Lowerbound && payHistory.Rate < UpperBound)
@@ -103,16 +132,15 @@ namespace MockAPI.Api.Services
         public string GetJobCandidateResumeByJobCandidateId(int JobCandidateId)
         {
             return db.JobCandidates
-            .Where(jobCandidate => jobCandidate.JobCandidateId == JobCandidateId)
-            .Select(jobCandidate => jobCandidate.Resume)
-            .First();
-
+                .Where(jobCandidate => jobCandidate.JobCandidateId == JobCandidateId)
+                .Select(jobCandidate => jobCandidate.Resume)
+                .First();
         }
 
         public string GetJobCandidateResumeByBusinessEntityId(int BusinessEntityId)
         {
             return db.JobCandidates
-                .Where(jobCandidate => jobCandidate.BusinessEntity.BusinessEntityId == BusinessEntityId)
+                .Where(jobCandidate => jobCandidate.BusinessEntityId == BusinessEntityId)
                 .Select(jobCandidate => jobCandidate.Resume)
                 .First();
         }

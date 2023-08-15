@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MockAPI.Api.RequestResponseObjects;
 using MockAPI.Api.Services;
 using MockAPI.Data;
 
@@ -25,7 +26,33 @@ namespace MockAPI.Api.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-           }
+         }
+
+        [HttpPost]
+        public IActionResult CreateEmployee([FromBody] EmployeeResponse Employee)
+        {
+            try
+            {
+                return Ok(humanResources.CreateEmployee(Employee));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+/*        [HttpGet("Employee/{Name:string}")]
+        public IActionResult GetEmployeeByName(string Name)
+        {
+            try
+            {
+                return Ok(humanResources.GetEmployeeByName(Name));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }*/
 
         [HttpGet("DepartmentHistory/{BusinessEntityId:int}")]
         public IActionResult GetDepartmentHistories(int BusinessEntityId)
@@ -53,12 +80,12 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("PayHistory/LowerBound/{LowerBound:decimal}")]
+        [HttpGet("PayHistory/Lowerbound/{LowerBound:decimal}")]
         public IActionResult GetPayHistoriesByLowerBound(decimal LowerBound)
         {
             try
             {
-                return Ok(humanResources.GetPayHistories(LowerBound));
+                return Ok(humanResources.GetPayHistoriesMin(LowerBound));
             }
             catch (Exception ex)
             {
@@ -66,12 +93,25 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpGet("PayHistory/LowerBoundUpperBound/")]
+        [HttpGet("PayHistory/Range/{UpperBound:decimal}")]
         public IActionResult GetPayHistoriesByLowerAndUpperBound([FromQuery] decimal LowerBound, decimal UpperBound)
         {
             try
             {
-                return Ok(humanResources.GetPayHistories(LowerBound, UpperBound));
+                return Ok(humanResources.GetPayHistoriesRange(LowerBound, UpperBound));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        
+        [HttpGet("JobCandidateResume/JobCandidateId/{JobCandidateId:int}")]
+        public IActionResult GetJobCandidateResumeByJobCandidateId(int JobCandidateId)
+        {
+            try
+            {
+                return Ok(humanResources.GetJobCandidateResumeByJobCandidateId(JobCandidateId));
             }
             catch (Exception ex)
             {

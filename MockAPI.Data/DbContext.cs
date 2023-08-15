@@ -12,6 +12,7 @@ namespace MockAPI.Data
         public DbSet<JobCandidate> JobCandidates { get; set; }
         public DbSet<PayHistory> PayHistories { get; set; }
         public DbSet<Person> People { get; set; }
+/*        public DbSet<Territory> Territory { get; set; }*/
 
         public MockAPIContext(DbContextOptions<MockAPIContext> options) : base(options)
         {
@@ -24,6 +25,7 @@ namespace MockAPI.Data
             modelBuilder.ApplyConfiguration(new JobCandidateConfiguration());
             modelBuilder.ApplyConfiguration(new PayHistoryConfiguration());
             modelBuilder.ApplyConfiguration(new PersonConfiguration());
+/*            modelBuilder.ApplyConfiguration(new TerritoryConfiguration());*/
         }
     }
 }
