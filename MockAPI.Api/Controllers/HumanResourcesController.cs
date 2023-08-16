@@ -28,7 +28,7 @@ namespace MockAPI.Api.Controllers
             }
          }
 
-        [HttpPost]
+        [HttpPost("Employee/")]
         public IActionResult CreateEmployee([FromBody] EmployeeResponse Employee)
         {
             try

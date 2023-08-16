@@ -41,7 +41,7 @@ namespace MockAPI.Api.Services
             }).First();
         }
 
-        public EmployeeResponse CreateEmployee(EmployeeResponse Employee)
+        public CreateEmployeeRequest CreateEmployee(CreateEmployeeRequest Employee)
         {
             var employee = new Employee
             {
