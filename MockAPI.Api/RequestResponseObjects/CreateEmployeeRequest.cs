@@ -2,7 +2,7 @@
 
 namespace MockAPI.Api.RequestResponseObjects
 {
-    public class EmployeeResponse
+    public class CreateEmployeeRequest
     {
         public int BusinessEntityId { get; set; }
         public string NationalIdNumber { get; set; }
