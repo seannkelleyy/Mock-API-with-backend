@@ -11,6 +11,5 @@
         public string? Suffix { get; set; }
         public int EmailPromotion { get; set; }
         public Guid RowGuid { get; set; }
-        public DateTime ModifiedDate { get; set; }
     }
 }

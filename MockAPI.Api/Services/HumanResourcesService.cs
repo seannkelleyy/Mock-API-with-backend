@@ -1,11 +1,7 @@
 ﻿using MockAPI.Domain;
 using MockAPI.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Data.SqlTypes;
-using System.Xml;
-using System.Xml.Linq;
 using MockAPI.Api.RequestResponseObjects;
-using Microsoft.AspNetCore.Mvc;
 
 namespace MockAPI.Api.Services
 {
@@ -18,6 +14,7 @@ namespace MockAPI.Api.Services
             db = dbContext;
         }
 
+        #region employee
         public GetEmployeeResponse GetEmployee(int BusinessEntityId)
         {
             return db.Employees
@@ -66,9 +63,12 @@ namespace MockAPI.Api.Services
             db.SaveChanges();
             db.Employees.Add(employee);
             db.SaveChanges();
-            return (employee);
+            return employee;
         }
 
+        #endregion
+
+        #region department history
         public List<GetDepartmentHistoryResponse> GetDepartmentHistories(int BusinessEntityId)
         {
                 return db.DepartmentHistories
@@ -85,6 +85,9 @@ namespace MockAPI.Api.Services
                 .ToList();
         }
 
+        #endregion
+
+        #region pay histories
         public List<GetPayHistoryResponse> GetPayHistories(int BusinessEntityId)
         {
                 return db.PayHistories
@@ -134,12 +137,19 @@ namespace MockAPI.Api.Services
             var payHistory = new PayHistory
             {
                 BusinessEntityId = newPayHistory.BusinessEntityId,
+                BusinessEntity = db.BusinessEntities.Where(businessEntity => businessEntity.BusinessEntityId == newPayHistory.BusinessEntityId).Select(businessEntity => businessEntity).First(),
                 RateChangeDate = newPayHistory.RateChangeDate,
                 Rate = newPayHistory.Rate,
-                PayFrequency = newPayHistory.PayFrequency
+                PayFrequency = newPayHistory.PayFrequency,
+                ModifiedDate = DateTime.UtcNow
             };
-        }
 
+            return payHistory;
+
+        }
+        #endregion
+
+        #region job candidates
         public JobCandidate CreateJobCandidate(CreateJobCandidateRequest candidate)
         {
             var newCandidate = new JobCandidate
@@ -178,5 +188,6 @@ namespace MockAPI.Api.Services
                 .Select(person => person.BusinessEntity.JobCandidate.Resume)
                 .ToList();
         }
+        #endregion
     }
 }

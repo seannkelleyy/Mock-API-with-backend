@@ -15,6 +15,7 @@ namespace MockAPI.Api.Controllers
             humanResources = new HumanResourcesService(dbContext);
         }
 
+        #region employee 
         [HttpGet("Employee/{BusinessEntityId:int}")]
         public IActionResult GetEmployee(int BusinessEntityId)
         {
@@ -28,7 +29,7 @@ namespace MockAPI.Api.Controllers
             }
          }
 
-        [HttpPost("Employee/")]
+        [HttpPost("Employee/Create")]
         public IActionResult CreateEmployee([FromBody] CreateEmployeeRequest Employee)
         {
             try
@@ -38,9 +39,11 @@ namespace MockAPI.Api.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
-    }
-}
+            }
+        }
+        #endregion
 
+        #region department history
         [HttpGet("DepartmentHistory/{BusinessEntityId:int}")]
         public IActionResult GetDepartmentHistories(int BusinessEntityId)
         {
@@ -54,6 +57,9 @@ namespace MockAPI.Api.Controllers
             }
         }
 
+        #endregion
+
+        #region pay history
         [HttpGet("PayHistory/BusinessEntity/{BusinessEntityId:int}")]
         public IActionResult GetPayHistoriesForEmployee(int BusinessEntityId)
         {
@@ -93,7 +99,7 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpPost("PayHistory/NewPaymentHistory/")]
+        [HttpPost("PayHistory/Create")]
         public IActionResult CreatePaymentHistory(CreatePayHistoryRequest newPayHistory)
         {
             try
@@ -106,18 +112,10 @@ namespace MockAPI.Api.Controllers
             }
         }
 
-        [HttpPost("JobCandidate/BusinessEntityId/")]
-        public IActionResult CreateJobCandidate(CreateJobCandidateRequest newCandidate)
-        {
-            try
-            {
-                return Ok(humanResources.CreateJobCandidate(newCandidate));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
+        #endregion
+
+        #region job candidate
+
         
         [HttpGet("JobCandidateResume/JobCandidateId/{JobCandidateId:int}")]
         public IActionResult GetJobCandidateResumeByJobCandidateId(int JobCandidateId)
@@ -157,5 +155,19 @@ namespace MockAPI.Api.Controllers
                 return StatusCode(500, ex.Message);
             } 
         }
+
+        [HttpPost("JobCandidate/Create")]
+        public IActionResult CreateJobCandidate(CreateJobCandidateRequest newCandidate)
+        {
+            try
+            {
+                return Ok(humanResources.CreateJobCandidate(newCandidate));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        #endregion
     }
 }

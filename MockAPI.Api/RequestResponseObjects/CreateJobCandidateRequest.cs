@@ -6,6 +6,5 @@ namespace MockAPI.Api.RequestResponseObjects
     {
         public int BusinessEntityId { get; set; }
         public string? Resume { get; set; }
-        public DateTime ModifiedDate { get; set; }
     }
 }

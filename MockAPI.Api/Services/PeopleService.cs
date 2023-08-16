@@ -70,7 +70,7 @@ namespace MockAPI.Api.Services
                 RowGuid = newPerson.RowGuid,
                 ModifiedDate = DateTime.Now,
             };
-           db.People.Add(person);
+            db.People.Add(person);
             db.SaveChanges();
             return (newPerson);
         }
