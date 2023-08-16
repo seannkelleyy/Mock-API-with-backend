@@ -43,9 +43,13 @@ namespace MockAPI.Api.Services
 
         public EmployeeResponse CreateEmployee(EmployeeResponse Employee)
         {
+            var businessEntity = new BusinessEntity
+            {
+                ModifiedDate = DateTime.Now,
+            };
             var employee = new Employee
             {
-                BusinessEntityId = Employee.BusinessEntityId,
+                BusinessEntityId = businessEntity.BusinessEntityId,
                 NationalIdNumber = Employee.NationalIdNumber,
                 LoginId = Employee.LoginId,
                 JobTitle = Employee.JobTitle,
@@ -59,15 +63,10 @@ namespace MockAPI.Api.Services
                 ModifiedDate = DateTime.Now,
             };
             db.Employees.Add(employee);
+            db.BusinessEntities.Add(businessEntity);
             db.SaveChanges();
             return (Employee);
         }
-
-/*        public GetEmployeeResponse GetEmployeeByName(string Name)
-        {
-            return db.Employees
-                .Where(employee => employee.)
-        }*/
 
         public List<GetDepartmentHistoryResponse> GetDepartmentHistories(int BusinessEntityId)
         {

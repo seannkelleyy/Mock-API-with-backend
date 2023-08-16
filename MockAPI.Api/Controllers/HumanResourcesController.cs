@@ -31,28 +31,15 @@ namespace MockAPI.Api.Controllers
         [HttpPost]
         public IActionResult CreateEmployee([FromBody] EmployeeResponse Employee)
         {
-            try
-            {
+            /*try
+            {*/
                 return Ok(humanResources.CreateEmployee(Employee));
-            }
+            /*}
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
-            }
+            }*/
         }
-
-/*        [HttpGet("Employee/{Name:string}")]
-        public IActionResult GetEmployeeByName(string Name)
-        {
-            try
-            {
-                return Ok(humanResources.GetEmployeeByName(Name));
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }*/
 
         [HttpGet("DepartmentHistory/{BusinessEntityId:int}")]
         public IActionResult GetDepartmentHistories(int BusinessEntityId)

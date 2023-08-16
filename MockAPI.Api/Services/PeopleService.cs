@@ -55,23 +55,5 @@ namespace MockAPI.Api.Services
                 .First();
         }
 
-        /*public List<GetPersonResponse> GetPeopleByTerritory(string Territory)
-        {
-            return db.People
-                .Where(person => person.RowGuid)
-                .Select(person => new GetPersonResponse
-                {
-                    BusinessEntity = person.BusinessEntity,
-                    NameStyle = person.NameStyle,
-                    Title = person.Title,
-                    FirstName = person.FirstName,
-                    LastName = person.LastName,
-                    Suffix = person.Suffix,
-                    EmailPromotion = person.EmailPromotion,
-                    RowGuid = db.StateProvince()
-                    ModifiedDate = person.ModifiedDate,
-                })
-                .First();
-        }*/
     }
 }
