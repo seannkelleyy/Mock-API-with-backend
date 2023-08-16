@@ -31,15 +31,15 @@ namespace MockAPI.Api.Controllers
         [HttpPost("Employee/")]
         public IActionResult CreateEmployee([FromBody] CreateEmployeeRequest Employee)
         {
-            /*try
-            {*/
+            try
+            {
                 return Ok(humanResources.CreateEmployee(Employee));
-            /*}
+        }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
-            }*/
-        }
+    }
+}
 
         [HttpGet("DepartmentHistory/{BusinessEntityId:int}")]
         public IActionResult GetDepartmentHistories(int BusinessEntityId)
@@ -86,6 +86,32 @@ namespace MockAPI.Api.Controllers
             try
             {
                 return Ok(humanResources.GetPayHistoriesRange(LowerBound, UpperBound));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost("PayHistory/NewPaymentHistory/")]
+        public IActionResult CreatePaymentHistory(CreatePayHistoryRequest newPayHistory)
+        {
+            try
+            {
+                return Ok(humanResources.CreatePaymentHistory(newPayHistory));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost("JobCandidate/BusinessEntityId/")]
+        public IActionResult CreateJobCandidate(CreateJobCandidateRequest newCandidate)
+        {
+            try
+            {
+                return Ok(humanResources.CreateJobCandidate(newCandidate));
             }
             catch (Exception ex)
             {

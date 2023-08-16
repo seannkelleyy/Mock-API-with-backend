@@ -55,5 +55,25 @@ namespace MockAPI.Api.Services
                 .First();
         }
 
+        public CreatePersonRequest CreatePerson(CreatePersonRequest newPerson)
+        {
+            var person = new Person
+            {
+                PersonType = newPerson.PersonType,
+                NameStyle = newPerson.NameStyle,
+                Title = newPerson.Title,
+                FirstName = newPerson.FirstName,
+                MiddleName = newPerson.MiddleName,
+                LastName = newPerson.LastName,
+                Suffix = newPerson.Suffix,
+                EmailPromotion = newPerson.EmailPromotion,
+                RowGuid = newPerson.RowGuid,
+                ModifiedDate = DateTime.Now,
+            };
+           db.People.Add(person);
+            db.SaveChanges();
+            return (newPerson);
+        }
+
     }
 }

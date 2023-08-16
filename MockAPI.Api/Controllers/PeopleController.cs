@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MockAPI.Api.RequestResponseObjects;
 using MockAPI.Api.Services;
 using MockAPI.Data;
 
@@ -33,6 +34,19 @@ namespace MockAPI.Api.Controllers
               try
             {
                 return Ok(people.GetPersonByName(FirstName, LastName));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost("Person/Create/")]
+        public IActionResult CreatePerson(CreatePersonRequest newPerson)
+        {
+            try
+            {
+                return Ok(people.CreatePerson(newPerson));
             }
             catch (Exception ex)
             {

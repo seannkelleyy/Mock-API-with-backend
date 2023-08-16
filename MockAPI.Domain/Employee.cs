@@ -11,7 +11,6 @@ namespace MockAPI.Domain
         public BusinessEntity BusinessEntity { get; set; }
         public string NationalIdNumber { get; set; }
         public string LoginId { get; set; }
-        public Int16? OrganizationLevel { get; set; }
         public string JobTitle { get; set; }
         public DateTime BirthDate { get; set; }
         public char MaritalStatus { get; set; }

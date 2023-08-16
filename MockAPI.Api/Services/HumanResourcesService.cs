@@ -27,7 +27,6 @@ namespace MockAPI.Api.Services
                 BusinessEntity = db.BusinessEntities.Where(businessEntity => businessEntity.BusinessEntityId == BusinessEntityId).Select(businessEntity => businessEntity).First(),
                 NationalIdNumber = employee.NationalIdNumber,
                 LoginId = employee.LoginId,
-                OrganizationLevel = employee.OrganizationLevel,
                 JobTitle = employee.JobTitle,
                 BirthDate = employee.BirthDate,
                 MaritalStatus = employee.MaritalStatus,
@@ -41,7 +40,7 @@ namespace MockAPI.Api.Services
             }).First();
         }
 
-        public CreateEmployeeRequest CreateEmployee(CreateEmployeeRequest Employee)
+        public Employee CreateEmployee(CreateEmployeeRequest Employee)
         {
             var businessEntity = new BusinessEntity
             {
@@ -60,12 +59,14 @@ namespace MockAPI.Api.Services
                 VacationHours = 14,
                 SickLeaveHours = 15,
                 CurrentFlag = true,
+                RowGuid = businessEntity.RowGuid,
                 ModifiedDate = DateTime.Now,
             };
-            db.Employees.Add(employee);
             db.BusinessEntities.Add(businessEntity);
             db.SaveChanges();
-            return (Employee);
+            db.Employees.Add(employee);
+            db.SaveChanges();
+            return (employee);
         }
 
         public List<GetDepartmentHistoryResponse> GetDepartmentHistories(int BusinessEntityId)
@@ -126,6 +127,30 @@ namespace MockAPI.Api.Services
                     ModifiedDate = payHistory.ModifiedDate,
                 })
                 .ToList();
+        }
+
+        public PayHistory CreatePaymentHistory(CreatePayHistoryRequest newPayHistory)
+        {
+            var payHistory = new PayHistory
+            {
+                BusinessEntityId = newPayHistory.BusinessEntityId,
+                RateChangeDate = newPayHistory.RateChangeDate,
+                Rate = newPayHistory.Rate,
+                PayFrequency = newPayHistory.PayFrequency
+            };
+        }
+
+        public JobCandidate CreateJobCandidate(CreateJobCandidateRequest candidate)
+        {
+            var newCandidate = new JobCandidate
+            {
+                BusinessEntityId = candidate.BusinessEntityId,
+                Resume = candidate.Resume,
+                ModifiedDate = DateTime.Now,
+            };
+            db.JobCandidates.Add(newCandidate);
+            db.SaveChanges();
+            return (newCandidate);
         }
 
         public string GetJobCandidateResumeByJobCandidateId(int JobCandidateId)

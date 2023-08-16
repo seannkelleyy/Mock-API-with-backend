@@ -4,7 +4,6 @@ namespace MockAPI.Api.RequestResponseObjects
 {
     public class CreateEmployeeRequest
     {
-        public int BusinessEntityId { get; set; }
         public string NationalIdNumber { get; set; }
         public string LoginId { get; set; }
         public string JobTitle { get; set; }
@@ -16,7 +15,6 @@ namespace MockAPI.Api.RequestResponseObjects
         public Int16 VacationHours { get; set; }
         public Int16 SickLeaveHours { get; set; }
         public Boolean? CurrentFlag { get; set; }
-        public Guid? RowGuid { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
 }
