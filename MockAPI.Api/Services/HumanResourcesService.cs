@@ -138,6 +138,9 @@ namespace MockAPI.Api.Services
                 Rate = newPayHistory.Rate,
                 PayFrequency = newPayHistory.PayFrequency
             };
+            db.PayHistories.Add(payHistory);
+            db.SaveChanges();
+            return payHistory;
         }
 
         public JobCandidate CreateJobCandidate(CreateJobCandidateRequest candidate)
