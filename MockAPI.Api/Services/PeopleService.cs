@@ -1,6 +1,7 @@
 ﻿using MockAPI.Data;
 using MockAPI.Api.RequestResponseObjects;
 using MockAPI.Domain;
+using System.Data.Entity.Core.Common;
 
 namespace MockAPI.Api.Services
 {
@@ -57,8 +58,13 @@ namespace MockAPI.Api.Services
 
         public CreatePersonRequest CreatePerson(CreatePersonRequest newPerson)
         {
+            var businessEntity = new BusinessEntity
+            {
+                ModifiedDate = DateTime.Now,
+            };
             var person = new Person
             {
+                BusinessEntityId = businessEntity.BusinessEntityId,
                 PersonType = newPerson.PersonType,
                 NameStyle = newPerson.NameStyle,
                 Title = newPerson.Title,
@@ -67,13 +73,31 @@ namespace MockAPI.Api.Services
                 LastName = newPerson.LastName,
                 Suffix = newPerson.Suffix,
                 EmailPromotion = newPerson.EmailPromotion,
-                RowGuid = newPerson.RowGuid,
+                RowGuid = businessEntity.RowGuid,
                 ModifiedDate = DateTime.Now,
             };
+            db.BusinessEntities.Add(businessEntity);
+            db.SaveChanges();
             db.People.Add(person);
             db.SaveChanges();
             return (newPerson);
         }
 
+        public UpdatePersonRequest PutPerson(UpdatePersonRequest updatedPerson)
+        {
+            var existingPerson = db.People.Find(updatedPerson.BusinessEntityId);
+
+            existingPerson.PersonType = updatedPerson.PersonType;
+            existingPerson.NameStyle = updatedPerson.NameStyle;
+            existingPerson.Title = updatedPerson.Title;
+            existingPerson.FirstName = updatedPerson.FirstName;
+            existingPerson.MiddleName = updatedPerson.MiddleName;
+            existingPerson.LastName = updatedPerson.LastName;
+            existingPerson.Suffix = updatedPerson.Suffix;
+            existingPerson.EmailPromotion = updatedPerson.EmailPromotion;
+
+            db.SaveChanges();
+            return (updatedPerson);
+        }
     }
 }

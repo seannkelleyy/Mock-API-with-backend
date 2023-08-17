@@ -114,7 +114,7 @@ namespace MockAPI.Api.Controllers
 
         #endregion
 
-        #region job candidate
+         #region job candidate
 
         
         [HttpGet("JobCandidateResume/JobCandidateId/{JobCandidateId:int}")]

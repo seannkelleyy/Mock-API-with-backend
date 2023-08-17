@@ -53,5 +53,18 @@ namespace MockAPI.Api.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpPut("Person/Update/")]
+        public IActionResult PutPerson(UpdatePersonRequest modifiedPerson)
+        {
+            try
+            {
+                return Ok(people.PutPerson(modifiedPerson));    
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
