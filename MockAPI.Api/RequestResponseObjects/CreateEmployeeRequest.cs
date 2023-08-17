@@ -15,6 +15,5 @@ namespace MockAPI.Api.RequestResponseObjects
         public Int16 VacationHours { get; set; }
         public Int16 SickLeaveHours { get; set; }
         public Boolean? CurrentFlag { get; set; }
-        public DateTime ModifiedDate { get; set; }
     }
 }

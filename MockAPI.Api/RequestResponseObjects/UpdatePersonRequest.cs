@@ -1,7 +1,8 @@
 ﻿namespace MockAPI.Api.RequestResponseObjects
 {
-    public class CreatePersonRequest
+    public class UpdatePersonRequest
     {
+        public int BusinessEntityId { get; set; }
         public string PersonType { get; set; }
         public Boolean NameStyle { get; set; }
         public string? Title { get; set; }
